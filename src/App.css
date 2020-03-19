@@ -1,38 +1,97 @@
-.App {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to left, hsla(59, 19%, 52%, 0.493), hsl(41, 100%, 50%));
+  min-height: 100vh;
+}
+
+.content {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#time {
+  height: 80px;
+  font-size: 50px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.clock-container {
+  position: relative;
+  height: 500px;
+  width: 500px;
+  background: white;
+  border-radius: 50%;
+  border: 4px black solid;
+  margin-top: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  z-index: 11;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: black;
+  transform: translateX(-50%);
+  transform-origin: bottom;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.second {
+  width: 4px;
+  height: 48%;
+  background-color: red;
+  z-index: 15;
+}
+.second.hand-after {
+  height: 15%;
+}
+.minute {
+  width: 7px;
+  height: 42%;
+  z-index: 14;
+}
+.minute.hand-after {
+  height: 7%;
+}
+.hour {
+  width: 9px;
+  height: 33%;
+  z-index: 13;
+}
+.hour.hand-after {
+  height: 5%;
 }
 
-.App-link {
-  color: #61dafb;
+.number {
+  font-size: 2.5rem;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mark-container {
+  font-size: 1rem;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.mark {
+  display: inline-block;
+  position: absolute;
+  border-radius: 2px;
+  z-index: 13;
+  background-color: black;
 }
