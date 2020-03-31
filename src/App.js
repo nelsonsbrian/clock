@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import './App.css';
 import dateformat from 'dateformat';
 
@@ -26,6 +26,7 @@ function App() {
       </div>
     );
   }
+  const NumberMemo = useCallback((props) => Number(props), []);
 
   const Hand = ({ type }) => {
     return (
@@ -40,6 +41,7 @@ function App() {
     );
   }
 
+
   const Mark = ({ mark }) => {
     return (
       <div className={`mark-container`}
@@ -53,6 +55,8 @@ function App() {
       </div>
     );
   }
+  const MarkMemo = useCallback((props) => Mark(props), []);
+
 
   function getRotation(time) {
     const secondsRatio = time.getSeconds() / 60 + (time.getMilliseconds() / 1000) / 60;
@@ -67,8 +71,8 @@ function App() {
       <div className="content">
         <div className="clock-container">
           {['second', 'minute', 'hour'].map(type => <Hand key={type} type={type} />)}
-          {Array(12).fill(0).map((x, i) => (<Number key={i} num={i + 1} />))}
-          {Array(60).fill(0).map((x, i) => (<Mark key={i} mark={i + 1} />))}
+          {Array(12).fill(0).map((x, i) => (<NumberMemo key={i} num={i + 1} />))}
+          {Array(60).fill(0).map((x, i) => (<MarkMemo key={i} mark={i + 1} />))}
         </div>
       </div>
     </>
